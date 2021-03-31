@@ -29,7 +29,7 @@ public class CautaActivity extends AppCompatActivity {
     TextView edit_text_ID;
 TextView nfc_contents;
 Button btn_scan;
-String UID_Search;
+Button btn_search;
 public static final String  Error_Detected = "ERROR!No NFC Tag detected";
 public static final String  Write_Success = "Text written with successfully!";
 public static final String  Write_Error  = "Error during writing!";
@@ -39,6 +39,7 @@ IntentFilter[] writingTagFilters;
 boolean writeMode;
 Tag myTag;
 Context context;
+String CardID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +47,16 @@ Context context;
         edit_text_ID = (TextView) findViewById(R.id.edit_text_ID);
         btn_scan = (Button) findViewById(R.id.btn_scan);
         nfc_contents = (TextView) findViewById(R.id.nfc_contents);
+        btn_search = (Button) findViewById(R.id.btn_search);
 
-                UID_Search = UUID.randomUUID().toString();
-                edit_text_ID.setText(UID_Search);
                 context = this;
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CautaActivity.this, CardID,Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
                 btn_scan.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -58,7 +65,7 @@ Context context;
                         if(myTag == null){
                             Toast.makeText(context,Error_Detected,Toast.LENGTH_SHORT).show();
                         }else{
-                            write("PlainText|"+ edit_text_ID.getText().toString(), myTag);
+                            write("Card ID"+ edit_text_ID.getText().toString(), myTag);
                             Toast.makeText(context,Write_Success,Toast.LENGTH_SHORT).show();
                         }
                     }catch (IOException e){
@@ -110,6 +117,8 @@ Context context;
             Log.e("UnsupportedEncoding", e.toString());
         }
         nfc_contents.setText("NFC Content: " + text);
+        CardID = text;
+
     }
     private void write(String text, Tag tag) throws IOException, FormatException{
         NdefRecord[] records = {createRecord(text)};
