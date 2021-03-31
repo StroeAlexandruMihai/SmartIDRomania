@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "764303195463",
+    "firebase_url": "https://smartidromania-b7d87-default-rtdb.firebaseio.com",
+    "project_id": "smartidromania-b7d87",
+    "storage_bucket": "smartidromania-b7d87.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764303195463:android:2c04e5251f513995ae2062",
+        "android_client_info": {
+          "package_name": "com.example.smartidromania"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764303195463-pnmhkrtfiugkojeahho97gqk44n8hnp8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaJ0FB38_zhAfYCPvQu1CN13_E4s3K72E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764303195463-pnmhkrtfiugkojeahho97gqk44n8hnp8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

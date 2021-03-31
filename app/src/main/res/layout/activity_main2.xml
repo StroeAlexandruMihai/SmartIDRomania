@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2"
+    android:background="@drawable/bg2"
+    android:fillViewport="true"
+>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="330dp"
+        android:layout_height="230dp"
+        android:src="@drawable/logo2"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <ImageView
+        android:id="@+id/profile_pic"
+        android:layout_width="700px"
+        android:layout_height="500px"
+        android:src="@drawable/add_photo"
+        android:layout_gravity="center_horizontal">
+    </ImageView>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_edittext"
+        android:layout_gravity="center_horizontal"
+        >
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_person"/>
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_text_nume"
+        android:hint="Nume"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:background="@android:color/transparent"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_edittext"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text_prenume"
+            android:hint="Prenume"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:background="@android:color/transparent"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_edittext"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_key2"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text_ID"
+            android:hint="ID"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:background="@android:color/transparent"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_scan"
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="SCAN"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/ic_baseline_nfc_24"/>
+
+    <LinearLayout
+        android:layout_width="267dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:background="@drawable/round_edittext"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="34dp"
+            android:src="@drawable/ic_baseline_male_24" />
+
+        <RadioGroup
+            android:id="@+id/radioSex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textColor="@color/black"
+                android:text="Masculin"
+                android:buttonTint="@color/black"
+                android:textStyle="bold"/>
+            <RadioButton
+                android:textColor="@color/black"
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Feminin"
+                android:buttonTint="@color/black"
+                android:textStyle="bold"
+                />
+
+
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+
+        android:background="@drawable/round_edittext"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_calendar_today_24"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text_bDay"
+            android:hint="Data nasterii"
+            android:focusable="false"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:background="@android:color/transparent"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_edittext"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_home_24"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:id="@+id/edit_text_adress"
+            android:hint="Adresa"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:background="@android:color/transparent"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="267dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:background="@drawable/round_edittext"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="34dp"
+            android:src="@drawable/ic_baseline_directions_car_24" />
+
+        <RadioGroup
+            android:id="@+id/radioDrive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/radioF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textColor="@color/black"
+                android:text="Fara permis"
+                android:buttonTint="@color/black"
+                android:textStyle="bold"/>
+
+            <RadioButton
+                android:id="@+id/radioA1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textColor="@color/black"
+                android:text=" AM, A1, B1"
+                android:buttonTint="@color/black"
+                android:textStyle="bold"/>
+            <RadioButton
+                android:textColor="@color/black"
+                android:id="@+id/radioB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A2, B, BE, C1, C1E, Tr"
+                android:buttonTint="@color/black"
+                android:textStyle="bold"
+                />
+            <RadioButton
+                android:textColor="@color/black"
+                android:id="@+id/radioC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A2, BE, C, CE, D1, D1E"
+                android:buttonTint="@color/black"
+                android:textStyle="bold"
+                />
+
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_edittext"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_medical_services_24"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/edit_text_medical"
+            android:hint="Sanatate"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:background="@android:color/transparent"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_edittext"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_school_24"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/edit_text_studii"
+            android:hint="Invatamant"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:background="@android:color/transparent"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_edittext"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_attach_money_24"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/edit_text_finante"
+            android:hint="Finante"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:background="@android:color/transparent"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_edittext"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_local_police_24"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/edit_text_cazier"
+            android:hint="Cazier"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/black"
+            android:background="@android:color/transparent"
+            />
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:text="INREGISTREAZA"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_green_dark"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>
+</ScrollView>
