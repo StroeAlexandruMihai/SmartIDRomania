@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smartidromania">
+    <uses-permission android:name="android.permission.NFC"/>
 
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,7 +16,13 @@
         android:theme="@style/Theme.SmartIDRomania">
         <activity android:name=".ModificaActivity"></activity>
         <activity android:name=".ProfilActivity" />
-        <activity android:name=".CautaActivity" />
+        <activity android:name=".CautaActivity" >
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".MenuActivity" />
         <activity android:name=".inregistrare_admin" />
         <activity android:name=".parola_uitata" />
