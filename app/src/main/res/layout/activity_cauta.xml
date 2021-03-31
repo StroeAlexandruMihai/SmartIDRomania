@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CautaActivity">
+    tools:context=".CautaActivity"
+    android:background="@drawable/bg1"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="350dp"
+        android:background="@drawable/round_edittext"
+        android:layout_gravity="center_horizontal"
+
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/person_search"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text_ID"
+            android:hint="ID"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:background="@android:color/transparent"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_scan"
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="SCAN"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/ic_baseline_nfc_24"/>
+
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_marginTop="80dp"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/cauta"/>
+
+</LinearLayout>

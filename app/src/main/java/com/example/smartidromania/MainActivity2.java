@@ -110,7 +110,6 @@ public class MainActivity2 extends AppCompatActivity {
         };
 
         edit_text_bDay.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
