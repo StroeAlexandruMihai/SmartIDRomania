@@ -29,11 +29,12 @@ import java.util.UUID;
 
 public class CautaActivity extends AppCompatActivity {
 
-Button btn_scan;
-Button btn_search;
+    Button btn_scan;
+    Button btn_search;
     TextView edit_text_ID;
     NfcAdapter nfcAdapter;
     PendingIntent pendingIntent;
+    final static String TAG = "nfc_test";
 
 String ID_CARD;
     @Override
