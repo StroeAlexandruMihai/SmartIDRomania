@@ -90,11 +90,10 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_key2"/>
-        <EditText
+        <TextView
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/edit_text_ID"
-            android:hint="ID"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:background="@android:color/transparent"

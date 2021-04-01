@@ -5,14 +5,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.MifareClassic;
+import android.nfc.tech.MifareUltralight;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -50,9 +56,10 @@ import java.util.UUID;
 public class MainActivity2 extends AppCompatActivity {
     private EditText edit_text_adress,edit_text_nume, edit_text_prenume, edit_text_bDay, edit_text_medical, edit_text_finance,edit_text_studii,edit_text_cazier;
     private ImageView profile_pic;
-    private Button btn_register;
+    private Button btn_register, btn_scan;
     private RadioGroup radioSexGroup, radioDriveGroup;
     private RadioButton radioSexButton, radioDriveButton;
+    TextView edit_text_ID;
     Uri FilePathUri;
     StorageReference storageReference;
     DatabaseReference databaseReference;
@@ -60,6 +67,11 @@ public class MainActivity2 extends AppCompatActivity {
     ProgressDialog progressDialog;
     String gender;
     String driveLicence;
+
+    // Initialization for NFC
+    NfcAdapter nfcAdapter;
+    PendingIntent pendingIntent;
+    String ID_CARD;
 
     final Calendar myCalendar = Calendar.getInstance();
 
@@ -80,6 +92,9 @@ public class MainActivity2 extends AppCompatActivity {
 
         profile_pic = findViewById(R.id.profile_pic);
         btn_register = findViewById(R.id.btn_register);
+        btn_scan = (Button) findViewById(R.id.btn_scan);
+
+        edit_text_ID = (TextView)findViewById(R.id.edit_text_ID);
 
         edit_text_nume = findViewById(R.id.edit_text_nume);
         edit_text_prenume = findViewById(R.id.edit_text_prenume);
@@ -94,6 +109,16 @@ public class MainActivity2 extends AppCompatActivity {
         radioDriveGroup = (RadioGroup) findViewById(R.id.radioDrive);
 
         edit_text_bDay = (EditText) findViewById(R.id.edit_text_bDay);
+
+
+        btn_scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit_text_ID.setText(ID_CARD);
+            }
+        });
+
+        // CALENDAR
 
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -117,7 +142,7 @@ public class MainActivity2 extends AppCompatActivity {
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
-        });
+        }); //CALENDAR
 
 
         profile_pic.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +155,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             }
         });
-
+//REGISTER USER
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +164,23 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
 
-    }@Override
+        // NFC
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        //If no NfcAdapter, display that the device has no NFC
+        if (nfcAdapter == null){
+            Toast.makeText(this,"NO NFC Capabilities",
+                    Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        //Create a PendingIntent object so the Android system can
+        //populate it with the details of the tag when it is scanned.
+        //PendingIntent.getActivity(Context,requestcode(identifier for
+        //                           intent),intent,int)
+        pendingIntent = PendingIntent.getActivity(this,0,new Intent(this,this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),0);
+//NFC
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -229,6 +270,174 @@ private String getGender(){
         radioDriveButton = (RadioButton) findViewById(selectedOption);
         driveLicence = radioDriveButton.getText().toString().trim();
         return driveLicence;
+    }
+
+
+
+
+    //NFC
+    /*    onResume(), Enable the Foreground Dispatch to listen for NFC intent (Waiting for NFC card to be tapped)
+    enableForegroundDispatch allows your current (foreground) activity to intercept our NFC intent and claim priority over all other activities both within the app and other apps.*/
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        assert nfcAdapter != null;
+        //nfcAdapter.enableForegroundDispatch(context,pendingIntent,
+        //                                    intentFilterArray,
+        //                                    techListsArray)
+        nfcAdapter.enableForegroundDispatch(this,pendingIntent,null,null);
+    }
+
+    protected void onPause() {
+        super.onPause();
+        //Onpause stop listening
+        if (nfcAdapter != null) {
+            nfcAdapter.disableForegroundDispatch(this);
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        resolveIntent(intent);
+    }
+
+    private void resolveIntent(Intent intent) {
+        String action = intent.getAction();
+        if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
+                || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)
+                || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
+            Tag tag = (Tag) intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+            assert tag != null;
+            byte[] payload = detectTagData(tag).getBytes();
+        }
+    }
+
+    private String detectTagData(Tag tag) {
+        StringBuilder sb = new StringBuilder();
+        byte[] id = tag.getId();
+        sb.append("ID (hex): ").append(toHex(id)).append('\n');
+        ID_CARD = toHex(id);
+        sb.append("ID (reversed hex): ").append(toReversedHex(id)).append('\n');
+        sb.append("ID (dec): ").append(toDec(id)).append('\n');
+        sb.append("ID (reversed dec): ").append(toReversedDec(id)).append('\n');
+
+        String prefix = "android.nfc.tech.";
+        sb.append("Technologies: ");
+        for (String tech : tag.getTechList()) {
+            sb.append(tech.substring(prefix.length()));
+            sb.append(", ");
+        }
+
+        sb.delete(sb.length() - 2, sb.length());
+
+        for (String tech : tag.getTechList()) {
+            if (tech.equals(MifareClassic.class.getName())) {
+                sb.append('\n');
+                String type = "Unknown";
+
+                try {
+                    MifareClassic mifareTag = MifareClassic.get(tag);
+
+                    switch (mifareTag.getType()) {
+                        case MifareClassic.TYPE_CLASSIC:
+                            type = "Classic";
+                            break;
+                        case MifareClassic.TYPE_PLUS:
+                            type = "Plus";
+                            break;
+                        case MifareClassic.TYPE_PRO:
+                            type = "Pro";
+                            break;
+                    }
+                    sb.append("Mifare Classic type: ");
+                    sb.append(type);
+                    sb.append('\n');
+
+                    sb.append("Mifare size: ");
+                    sb.append(mifareTag.getSize() + " bytes");
+                    sb.append('\n');
+
+                    sb.append("Mifare sectors: ");
+                    sb.append(mifareTag.getSectorCount());
+                    sb.append('\n');
+
+                    sb.append("Mifare blocks: ");
+                    sb.append(mifareTag.getBlockCount());
+                } catch (Exception e) {
+                    sb.append("Mifare classic error: " + e.getMessage());
+                }
+            }
+
+            if (tech.equals(MifareUltralight.class.getName())) {
+                sb.append('\n');
+                MifareUltralight mifareUlTag = MifareUltralight.get(tag);
+                String type = "Unknown";
+                switch (mifareUlTag.getType()) {
+                    case MifareUltralight.TYPE_ULTRALIGHT:
+                        type = "Ultralight";
+                        break;
+                    case MifareUltralight.TYPE_ULTRALIGHT_C:
+                        type = "Ultralight C";
+                        break;
+                }
+                sb.append("Mifare Ultralight type: ");
+                sb.append(type);
+            }
+        }
+        Log.v("test",sb.toString());
+        return sb.toString();
+    }
+    private String toHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = bytes.length - 1; i >= 0; --i) {
+            int b = bytes[i] & 0xff;
+            if (b < 0x10)
+                sb.append('0');
+            sb.append(Integer.toHexString(b));
+            if (i > 0) {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
+    }
+
+    private String toReversedHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bytes.length; ++i) {
+            if (i > 0) {
+                sb.append(" ");
+            }
+            int b = bytes[i] & 0xff;
+            if (b < 0x10)
+                sb.append('0');
+            sb.append(Integer.toHexString(b));
+        }
+        return sb.toString();
+    }
+
+    private long toDec(byte[] bytes) {
+        long result = 0;
+        long factor = 1;
+        for (int i = 0; i < bytes.length; ++i) {
+            long value = bytes[i] & 0xffl;
+            result += value * factor;
+            factor *= 256l;
+        }
+        return result;
+    }
+
+    private long toReversedDec(byte[] bytes) {
+        long result = 0;
+        long factor = 1;
+        for (int i = bytes.length - 1; i >= 0; --i) {
+            long value = bytes[i] & 0xffl;
+            result += value * factor;
+            factor *= 256l;
+        }
+        return result;
     }
 
 }
