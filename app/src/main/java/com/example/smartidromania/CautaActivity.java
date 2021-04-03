@@ -43,7 +43,7 @@ String ID_CARD;
         setContentView(R.layout.activity_cauta);
         edit_text_ID = (TextView) findViewById(R.id.edit_text_ID);
         btn_scan = (Button) findViewById(R.id.btn_scan);
-        btn_search = (Button) findViewById(R.id.btn_search);
+        btn_search = (Button) findViewById(R.id.btn_cauta);
 
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override

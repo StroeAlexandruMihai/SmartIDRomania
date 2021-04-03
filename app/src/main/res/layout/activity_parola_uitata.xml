@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".parola_uitata"
-    android:background="@drawable/bg1">
+    android:background="@drawable/bg77">
 
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/round_edittext"
+        android:background="@drawable/buttontip2"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +34,8 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:hint="Email"
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/black" />
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
 
     </LinearLayout>
 
@@ -55,9 +55,10 @@
         android:id="@+id/buton_recover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_button"
+        android:background="@drawable/buttontip2"
         android:text="RESETEAZA"
-        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

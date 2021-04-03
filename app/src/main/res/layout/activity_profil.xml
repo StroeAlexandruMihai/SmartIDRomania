@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ProfilActivity"
-    android:background="@drawable/bg1">
+    android:background="@drawable/background2">
 
 
 
@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="250dp"
         android:background="@drawable/round_edittext">
 
         <TextView
@@ -58,11 +58,15 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp">
         <Button
-            android:layout_width="450px"
-            android:layout_height="200px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/btn_modifica"
-            android:textColor="@android:color/black"
-            android:background="@drawable/modifica"/>
+            android:padding="5dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="MODIFICA"
+            android:textSize="20sp"
+            android:background="@drawable/buttontip2"/>
 
 
     </LinearLayout>

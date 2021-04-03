@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CautaActivity"
-    android:background="@drawable/bg66"
+    android:background="@drawable/bg77"
     android:orientation="vertical">
 
     <LinearLayout

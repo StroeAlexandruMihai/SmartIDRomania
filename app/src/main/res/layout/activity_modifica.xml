@@ -4,25 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg3"
+    android:background="@drawable/bg2"
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:context=".ModificaActivity">
 
+<ImageView
+    android:layout_width="250dp"
+    android:layout_height="180dp"
+    android:layout_gravity="center"
+    android:src="@drawable/logov3"/>
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp">
+        android:layout_gravity="center">
         <Button
             android:id="@+id/btn_fragment_parola"
             android:layout_width="450px"
             android:layout_height="200px"
-
-            android:textColor="@android:color/black"
-            android:background="@drawable/schimbaparola"/>
+            android:textSize="30sp"
+            android:text="SCHIMBA PAROLA"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/buttontip2"/>
 
     </LinearLayout>
 
@@ -35,14 +41,17 @@
             android:id="@+id/btn_fragment_email"
             android:layout_width="450px"
             android:layout_height="200px"
-            android:textColor="@android:color/black"
-            android:background="@drawable/schimbaemail"/>
+            android:textSize="30sp"
+            android:text="SCHIMBA EMAIL"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/buttontip2"/>
 
 
     </LinearLayout>
 
     <FrameLayout
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fragment_container"/>
