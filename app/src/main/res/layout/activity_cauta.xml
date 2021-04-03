@@ -5,55 +5,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CautaActivity"
-    android:background="@drawable/bg1"
+    android:background="@drawable/bg66"
     android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="230dp"
+        >
+
 
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:padding="10dp"
-        android:layout_marginTop="350dp"
-        android:background="@drawable/round_edittext"
         android:layout_gravity="center_horizontal"
-
         >
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/person_search"/>
+        <Button
+            android:id="@+id/btn_scan"
+            android:layout_marginTop="10dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:text="SCAN"
+            android:textColor="@color/white"
+            android:background="@drawable/ic_baseline_nfc_24"/>
         <TextView
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/edit_text_ID"
             android:hint="CARD ID"
+            android:gravity="center"
+            android:layout_marginTop="7dp"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
-            android:background="@android:color/transparent"
+            android:background="@drawable/round_edittext"
             />
     </LinearLayout>
 
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_scan"
-        android:layout_marginTop="10dp"
-        android:layout_width="100dp"
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="SCAN"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/white"
-        android:background="@drawable/ic_baseline_nfc_24"/>
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/round_edittext"
+        android:padding="6dp">
 
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/search_menu"
+            android:layout_marginRight="10dp"
+            />
 
-    <Button
-        android:id="@+id/btn_search"
-        android:layout_marginTop="80dp"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/white"
-        android:background="@drawable/cauta"/>
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_cauta"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:text="CAUTA"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/buttontip2"
+            />
+    </LinearLayout>
 
 </LinearLayout>

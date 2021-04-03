@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/bg1">
+    android:background="@drawable/background2">
 
 
     <LinearLayout
@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="250dp"
         android:background="@drawable/round_edittext"
         >
 
@@ -65,26 +65,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="310dp">
 
         <Button
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:id="@+id/buton_login"
             android:text="Logare"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="80dp"
-            android:background="@drawable/round_button"/>
+            android:background="@drawable/buttontip2"/>
         <Button
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:id="@+id/buton_register"
             android:text="INREGISTRARE"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/round_button"
+            android:background="@drawable/buttontip2"
             />
 
     </LinearLayout>
@@ -94,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:visibility="gone"
         />
     <TextView
@@ -103,7 +104,7 @@
         android:id="@+id/textview_forgot"
         android:text="Ti-ai uitat parola? Apasa aici !"
         android:textColor="@android:color/holo_red_dark"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:textStyle="bold"
         android:background="@drawable/round_edittext"
