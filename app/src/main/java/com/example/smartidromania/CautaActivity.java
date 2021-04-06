@@ -45,25 +45,32 @@ import java.util.concurrent.TimeUnit;
 
 public class CautaActivity extends AppCompatActivity {
 
-    Button btn_scan;
-    Button btn_search;
-    TextView edit_text_ID;
+
     NfcAdapter nfcAdapter;
     PendingIntent pendingIntent;
     final static String TAG = "nfc_test";
     String ID_CARD;
     RecyclerView recview;
     myadapter adapter;
+    Button btn_srch;
+    EditText et_ID_CARD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cauta);
-//        edit_text_ID = (TextView) findViewById(R.id.edit_text_ID);
-//        btn_scan = (Button) findViewById(R.id.btn_scan);
-//        btn_search = (Button) findViewById(R.id.btn_cauta);
+
+        btn_srch = findViewById(R.id.btn_srch);
+        et_ID_CARD = findViewById(R.id.et_ID_CARD);
 
         // SEARCH
+
+        btn_srch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                processsearch(ID_CARD);
+            }
+        });
 
         recview=(RecyclerView)findViewById(R.id.recyclerView);
         recview.setLayoutManager(new LinearLayoutManager(this));
@@ -79,25 +86,8 @@ public class CautaActivity extends AppCompatActivity {
 
 
 
-        //SEARCH
 
 
-//        btn_search.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String searchText = edit_text_ID.getText().toString();
-//            }
-//        });
-//
-//                btn_scan.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                        edit_text_ID.setText(ID_CARD);
-//
-//                    }
-//                });
-//
 
                 //NFC
             //Initialise NfcAdapter
@@ -139,15 +129,18 @@ public class CautaActivity extends AppCompatActivity {
 
         SearchView searchView=(SearchView)item.getActionView();
 
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+
                 processsearch(s);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
+
                 processsearch(s);
                 return false;
             }
@@ -155,6 +148,7 @@ public class CautaActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
 
     private void processsearch(String s)
     {
@@ -220,6 +214,7 @@ public class CautaActivity extends AppCompatActivity {
         byte[] id = tag.getId();
         sb.append("ID (hex): ").append(toHex(id)).append('\n');
         ID_CARD = toHex(id);
+        et_ID_CARD.setText(ID_CARD, TextView.BufferType.EDITABLE);
         sb.append("ID (reversed hex): ").append(toReversedHex(id)).append('\n');
         sb.append("ID (dec): ").append(toDec(id)).append('\n');
         sb.append("ID (reversed dec): ").append(toReversedDec(id)).append('\n');

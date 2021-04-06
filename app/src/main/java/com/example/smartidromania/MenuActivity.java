@@ -1,5 +1,6 @@
 package com.example.smartidromania;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +20,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         btn_add_user =(Button) findViewById(R.id.btn_add_user);
         btn_add_user.setOnClickListener(this);
         btn_cauta = (Button)findViewById(R.id.btn_cauta);

@@ -1,6 +1,7 @@
 package com.example.smartidromania;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -32,6 +33,8 @@ public class ModificaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         setContentView(R.layout.activity_modifica);
         fragmentContainer =(FrameLayout) findViewById(R.id.fragment_container);
         fragment_email = (Button) findViewById(R.id.btn_fragment_email);

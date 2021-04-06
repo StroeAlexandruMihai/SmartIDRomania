@@ -4,10 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CautaActivity">
+    tools:context=".CautaActivity"
+    android:background="@drawable/bgfrag"
+    android:orientation="vertical">
+
+<ImageView
+    android:layout_width="300dp"
+    android:layout_height="250dp"
+    android:layout_gravity="center"
+    android:src="@drawable/logov3"/>
 
 
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/buttontip2">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_search_24"
+            android:gravity="center_horizontal"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scaneaza cardul"
+        android:id="@+id/et_ID_CARD"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+       />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button"
+            android:textSize="20sp"
+            android:id="@+id/btn_srch"
+            android:textColor="@color/myBlue"
+            android:layout_marginLeft="100dp"
+            android:text="CAUTA"/>
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
