@@ -1,6 +1,8 @@
 package com.example.smartidromania;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -17,15 +19,29 @@ import android.nfc.tech.Ndef;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.squareup.okhttp.OkHttpClient;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class CautaActivity extends AppCompatActivity {
 
@@ -35,34 +51,56 @@ public class CautaActivity extends AppCompatActivity {
     NfcAdapter nfcAdapter;
     PendingIntent pendingIntent;
     final static String TAG = "nfc_test";
+    String ID_CARD;
+    RecyclerView recview;
+    myadapter adapter;
 
-String ID_CARD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cauta);
-        edit_text_ID = (TextView) findViewById(R.id.edit_text_ID);
-        btn_scan = (Button) findViewById(R.id.btn_scan);
-        btn_search = (Button) findViewById(R.id.btn_cauta);
+//        edit_text_ID = (TextView) findViewById(R.id.edit_text_ID);
+//        btn_scan = (Button) findViewById(R.id.btn_scan);
+//        btn_search = (Button) findViewById(R.id.btn_cauta);
 
-        btn_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        // SEARCH
+
+        recview=(RecyclerView)findViewById(R.id.recyclerView);
+        recview.setLayoutManager(new LinearLayoutManager(this));
+
+        FirebaseRecyclerOptions<Person> options =
+                new FirebaseRecyclerOptions.Builder<Person>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Persons"), Person.class)
+                        .build();
+
+        adapter=new myadapter(options);
+        recview.setAdapter(adapter);
 
 
-            }
-        });
 
-                btn_scan.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        edit_text_ID.setText(ID_CARD);
-                    }
-                });
 
+        //SEARCH
+
+
+//        btn_search.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String searchText = edit_text_ID.getText().toString();
+//            }
+//        });
+//
+//                btn_scan.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        edit_text_ID.setText(ID_CARD);
+//
+//                    }
+//                });
+//
 
                 //NFC
-//Initialise NfcAdapter
+            //Initialise NfcAdapter
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         //If no NfcAdapter, display that the device has no NFC
         if (nfcAdapter == null){
@@ -77,6 +115,66 @@ String ID_CARD;
         pendingIntent = PendingIntent.getActivity(this,0,new Intent(this,this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),0);
 
     }
+// SEARCH
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.search_menu,menu);
+
+        MenuItem item=menu.findItem(R.id.search);
+
+        SearchView searchView=(SearchView)item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                processsearch(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                processsearch(s);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void processsearch(String s)
+    {
+        FirebaseRecyclerOptions<Person> options =
+                new FirebaseRecyclerOptions.Builder<Person>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Persons").orderByChild("idKey").startAt(s).endAt(s+"\uf8ff"), Person.class)
+                        .build();
+
+        adapter=new myadapter(options);
+        adapter.startListening();
+        recview.setAdapter(adapter);
+
+    }
+
+
+//SEARCH
+
+
+
+//end
 //NFC
     /*    Step 2: onResume(), Enable the Foreground Dispatch to listen for NFC intent (Waiting for NFC card to be tapped)
     enableForegroundDispatch allows your current (foreground) activity to intercept our NFC intent and claim priority over all other activities both within the app and other apps.*/
@@ -241,6 +339,11 @@ String ID_CARD;
         }
         return result;
     }
+
+
+
+
+
 
 
 }

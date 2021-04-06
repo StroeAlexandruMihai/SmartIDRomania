@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -61,6 +62,7 @@ public class MainActivity2 extends AppCompatActivity {
     private RadioButton radioSexButton, radioDriveButton;
     TextView edit_text_ID;
     Uri FilePathUri;
+    ProgressBar uploadProgressBar;
     StorageReference storageReference;
     DatabaseReference databaseReference;
     int Image_Request_Code = 7;
@@ -76,7 +78,7 @@ public class MainActivity2 extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
 
     private static final int PICK_IMAGE_REQUEST = 1;
-    private Uri mImageUri;
+    private Uri mUploadImageUri;
 
 
     @Override
@@ -86,7 +88,7 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-        storageReference = FirebaseStorage.getInstance().getReference("Persons");
+        storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference("Persons");
         progressDialog = new ProgressDialog(MainActivity2.this);
 
@@ -210,6 +212,8 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 
+    // UPLOAD PERSON IN DATABASE
+
     public void UploadImage() {
 
 
@@ -231,16 +235,24 @@ public class MainActivity2 extends AppCompatActivity {
                             String studies = edit_text_studii.getText().toString().trim();
                             String bDay = edit_text_bDay.getText().toString().trim();
                             String finance = edit_text_finance.getText().toString().trim();
-                            String idKey = UUID.randomUUID().toString();
+                            String idKey = ID_CARD;
                             String gender = getGender();
                             String driverLicences = getDriverLicences();
 
+                            final Task<Uri> firebaseUri = taskSnapshot.getStorage().getDownloadUrl();
 
-                            progressDialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "Persoana inregistrata cu succes !", Toast.LENGTH_SHORT).show();
-                            Person imageUploadInfo = new Person(nume, prenume, address, medical, finance, police, gender,bDay,driverLicences,idKey, studies,taskSnapshot.getUploadSessionUri().toString());
-                            String ImageUploadId = databaseReference.push().getKey();
-                            databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
+                            firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String downloadUri = uri.toString();
+                                    progressDialog.dismiss();
+                                    Toast.makeText(getApplicationContext(), "Persoana inregistrata cu succes !", Toast.LENGTH_SHORT).show();
+                                    Person person = new Person(nume, prenume, address, medical, finance, police, gender,bDay,driverLicences,idKey, studies,downloadUri);
+                                    String ImageUploadId = databaseReference.push().getKey();
+                                    databaseReference.child(ImageUploadId).setValue(person);
+                                }});
+
+
                         }
                     });
         }
@@ -250,6 +262,10 @@ public class MainActivity2 extends AppCompatActivity {
 
         }
     }
+// rest of your code
+
+
+//GET GENDER FROM RADIO BUTTONS
 private String getGender(){
     // get selected radio button from radioGroup
     int selectedId = radioSexGroup.getCheckedRadioButtonId();
@@ -259,12 +275,13 @@ private String getGender(){
     gender = radioSexButton.getText().toString().trim();
     return gender;
 }
+//GET BDAY DATE
     private void updateLabel() {
         String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         edit_text_bDay.setText(sdf.format(myCalendar.getTime()));
     }
-
+//GET DRIVE LICENCE
     private String getDriverLicences(){
         int selectedOption = radioDriveGroup.getCheckedRadioButtonId();
         radioDriveButton = (RadioButton) findViewById(selectedOption);
