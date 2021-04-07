@@ -5,54 +5,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
     android:elevation="5dp"
+    android:background="#17D1DBED"
     app:cardUseCompatPadding="true"
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:padding="15dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageViewPerson"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_centerVertical="true"
-            android:id="@+id/imageViewPerson"
-            />
+            android:layout_centerVertical="true" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/nametext"
-
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:textColor="#000"
-            android:layout_toRightOf="@id/imageViewPerson"
-            android:layout_marginLeft="10dp"/>
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageViewPerson"
+            android:textColor="#000"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/bDayText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-            android:textSize="25sp"
-            android:textColor="#000"
-            android:layout_toRightOf="@id/imageViewPerson"
             android:layout_below="@id/nametext"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageViewPerson"
+            android:textColor="#000"
+            android:textSize="25sp" />
 
 
         <TextView
+            android:id="@+id/adresstext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/adresstext"
 
-            android:textSize="25sp"
-            android:textColor="#000"
-            android:layout_toRightOf="@id/imageViewPerson"
             android:layout_below="@id/bDayText"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageViewPerson"
+            android:textColor="#000"
+            android:textSize="25sp" />
 
 
     </RelativeLayout>

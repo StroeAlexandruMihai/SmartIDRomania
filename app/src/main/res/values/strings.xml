@@ -2,4 +2,6 @@
     <string name="app_name">SmartID\nRomania</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bun_venit">Bun venit la SmartID Romania, aplicatia are ca scop digitalizarea datelor personale.</string>
+    <string name="bun_venit2">Pentru utilizarea aplicatiei va rugam sa alegeti o optiune de utilizare a aplicatiei: utilizator sau administrator.</string>
 </resources>

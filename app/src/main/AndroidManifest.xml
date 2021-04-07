@@ -11,6 +11,7 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartIDRomania"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PostsListActivity" />
+        <activity android:name=".UtilizatorActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".ModificaActivity" />
         <activity android:name=".ProfilActivity" />
         <activity android:name=".CautaActivity" />
@@ -37,7 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ChooseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
