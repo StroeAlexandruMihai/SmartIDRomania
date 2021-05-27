@@ -31,13 +31,24 @@
             android:textColor="#000"
             android:textSize="25sp"
             android:textStyle="bold" />
+        <TextView
+            android:id="@+id/prenumetext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nametext"
+
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageViewPerson"
+            android:textColor="#000"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/bDayText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:layout_below="@id/nametext"
+            android:layout_below="@id/prenumetext"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/imageViewPerson"
             android:textColor="#000"
@@ -50,6 +61,46 @@
             android:layout_height="wrap_content"
 
             android:layout_below="@id/bDayText"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageViewPerson"
+            android:textColor="#000"
+            android:textSize="25sp" />
+        <TextView
+            android:id="@+id/permistext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/adresstext"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageViewPerson"
+            android:textColor="#000"
+            android:textSize="25sp" />
+        <TextView
+            android:id="@+id/medicaltext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/permistext"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageViewPerson"
+            android:textColor="#000"
+            android:textSize="25sp" />
+        <TextView
+            android:id="@+id/financiartext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/medicaltext"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageViewPerson"
+            android:textColor="#000"
+            android:textSize="25sp" />
+        <TextView
+            android:id="@+id/gentext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/financiartext"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/imageViewPerson"
             android:textColor="#000"
